@@ -66,11 +66,11 @@ import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xffffff );
 				scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
-				var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
+				var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 1 );
 				light.position.set( 0.5, 1, 0.75 );
 				scene.add( light );
 				var loader = new THREE.GLTFLoader();
-				loader.load('lathe.glb', function ( gltf ) {
+				loader.load('Blender2.gltf', function ( gltf ) {
 					console.log(gltf);
 					scene.add(gltf.scene);
 					gltf.animations; // Array<THREE.AnimationClip>
@@ -113,7 +113,7 @@ import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
 							moveRight = true;
 							break;
 						case 32: // space
-							if ( canJump === true ) velocity.y += 350;
+							if ( canJump === true ) velocity.y += 210;
 							canJump = false;
 							break;
 					}
