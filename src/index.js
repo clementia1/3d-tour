@@ -30,7 +30,7 @@ var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 1 );
 light.position.set( 0.5, 1, 0.75 );
 scene.add( light );
 var loader = new GLTFLoader();
-loader.load('models/Blender2.gltf', function ( gltf ) {
+loader.load('models/garage.gltf', function ( gltf ) {
 	console.log(gltf);
 	scene.add(gltf.scene);
 	gltf.animations; // Array<THREE.AnimationClip>
@@ -104,23 +104,23 @@ raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1,
 // floor
 var floorGeometry = new THREE.PlaneBufferGeometry( 2000, 2000, 100, 100 );
 floorGeometry.rotateX( - Math.PI / 2 );
-// vertex displacement
+//~ // vertex displacement
 var position = floorGeometry.attributes.position;
-for ( var i = 0, l = position.count; i < l; i ++ ) {
-	vertex.fromBufferAttribute( position, i );
-	vertex.x += Math.random() * 20 - 10;
-	vertex.y += Math.random() * 2;
-	vertex.z += Math.random() * 20 - 10;
-	position.setXYZ( i, vertex.x, vertex.y, vertex.z );
-}
-floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
-position = floorGeometry.attributes.position;
+//~ for ( var i = 0, l = position.count; i < l; i ++ ) {
+	//~ vertex.fromBufferAttribute( position, i );
+	//~ vertex.x += Math.random() * 20 - 10;
+	//~ vertex.y += Math.random() * 2;
+	//~ vertex.z += Math.random() * 20 - 10;
+	//~ position.setXYZ( i, vertex.x, vertex.y, vertex.z );
+//~ }
+//~ floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
+//~ position = floorGeometry.attributes.position;
 var colors = [];
 for ( var i = 0, l = position.count; i < l; i ++ ) {
 	color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 	colors.push( color.r, color.g, color.b );
 }
-var texture = new THREE.TextureLoader().load( 'concrete_clean_0037_01.jpg' );
+var texture = new THREE.TextureLoader().load( 'models/concrete_clean_0037_01.jpg' );
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.repeat.set( 6, 6 );
@@ -129,7 +129,7 @@ var floorMaterial = new THREE.MeshBasicMaterial( { map: texture } );
 var floor = new THREE.Mesh( floorGeometry, floorMaterial );
 scene.add( floor );
 
-renderer = new THREE.WebGLRenderer( { antialias: true } );
+renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true });
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
