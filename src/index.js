@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { PointerLockControls } from '../node_modules/three/examples/jsm/controls/PointerLockControls.js';
+import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { TextureLoader } from '../node_modules/three/src/loaders/TextureLoader.js';
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 var camera, scene, renderer, controls;
